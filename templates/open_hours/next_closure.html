@@ -1,0 +1,10 @@
+{% for next_closure in next_closure %}
+{% if next_closure.closed_date_from == next_closure.closed_date_to %}
+<div>The library will be closed on {{ next_closure.closed_date_from }} for {{ next_closure.closed_date_name }}</div>
+
+{% elif next_closure.closed_date_from != next_closure.closed_date_to %}
+<div>The library will be closed from {{ next_closure.closed_date_from }} to {{ next_closure.closed_date_to }} for {{ next_closure.closed_date_name }}</div>
+{% endif %}
+{% empty %}
+<div>There are no upcoming scheduled closures</div>
+{% endfor %}

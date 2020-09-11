@@ -95,3 +95,12 @@ def business_hours(context):
 
 	return {'request':	request,
 			'business_hour': business_hour}
+
+@register.inclusion_tag('open_hours/next_closure.html', takes_context=True)
+def next_closure(context):
+	request = context['request']
+	current_date = dt.date.today()
+	next_closure = ClosedDate.objects.filter(closed_date_from__gt=current_date,all_day=True).order_by('closed_date_from')[:1]
+
+	return {'request':	request,
+			'next_closure': next_closure}

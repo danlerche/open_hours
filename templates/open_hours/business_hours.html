@@ -2,20 +2,22 @@
 <tbody>
 
 {% for business_hours in business_hour %}
-
 {% if business_hours.day_of_the_week == 6 %}
 <tr><td>Sunday: </td>{% if business_hours.open_closed == 1 %}<td class="open">{{ business_hours.time_from|date:"g:i A" }} - {{ business_hours.time_to|date:"g:i A" }}</td>{% else %}<td class="closed">Closed </td>{% endif %}</tr>
-{% elif business_hours.day_of_the_week == 0 %}
+{% endif %}
+{% endfor %}
+
+{% for business_hours in business_hour %}
+
+{% if business_hours.day_of_the_week == 0 %}
 <tr><td>Monday: </td>{% if business_hours.open_closed == 1 %}<td class="open">{{ business_hours.time_from|date:"g:i A" }} - {{ business_hours.time_to|date:"g:i A" }}</td>{% else %}<td class="closed">Closed </td>{% endif %}</tr>
 {% endif %}
 {% endfor %}
 
 {% for business_hours in business_hour %}
 
-
 {% if business_hours.day_of_the_week == 1 %}
 <tr><td>Tuesday: </td>{% if business_hours.open_closed == 1 %}<td class="open">{{ business_hours.time_from|date:"g:i A" }} - {{ business_hours.time_to|date:"g:i A" }}</td>{% else %}<td class="closed">Closed </td>{% endif %}</tr>
-
 
 {% elif business_hours.day_of_the_week == 2 %}
 <tr><td>Wednesday: </td>{% if business_hours.open_closed == 1 %}<td class="open">{{ business_hours.time_from|date:"g:i A" }} - {{ business_hours.time_to|date:"g:i A" }}</td>{% else %}<td class="closed">Closed </td>{% endif %}</tr>
@@ -36,4 +38,3 @@
 {% endfor %}
 </tbody>
 </table>
-
