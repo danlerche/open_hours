@@ -16,6 +16,7 @@ class EnableMessageDisplay(models.Model):
 class BranchInfo(models.Model):
     branch_name = models.CharField(max_length=200, null=True, blank=True)
     hours_page = models.ForeignKey('wagtailcore.Page',null=True,blank=True,on_delete=models.SET_NULL,related_name='+',)
+    closed_holiday_page = models.ForeignKey('wagtailcore.Page',null=True,blank=True,on_delete=models.SET_NULL,related_name='+',)
     street_number = models.SmallIntegerField(null=True, blank=True)
     street_name = models.CharField(max_length=100, null=True, blank=True)
     city = models.CharField(max_length=100, null=True, blank=True)
@@ -26,6 +27,7 @@ class BranchInfo(models.Model):
     panels = [
         FieldPanel('branch_name'),
         FieldPanel('hours_page'),
+        FieldPanel('closed_holiday_page'),
         FieldPanel('street_number'),
         FieldPanel('street_name'),
         FieldPanel('city'),

@@ -99,8 +99,19 @@ def business_hours(context):
 @register.inclusion_tag('open_hours/next_closure.html', takes_context=True)
 def next_closure(context):
 	request = context['request']
+	branch_info = BranchInfo.objects.all()
 	current_date = dt.date.today()
 	next_closure = ClosedDate.objects.filter(closed_date_from__gt=current_date,all_day=True).order_by('closed_date_from')[:1]
 
 	return {'request':	request,
-			'next_closure': next_closure}
+			'next_closure': next_closure,
+			'branch_info': branch_info}
+
+@register.inclusion_tag('open_hours/all_closures.html', takes_context=True)
+def all_closures(context):
+	request = context['request']
+	current_date = dt.date.today()
+	all_closures = ClosedDate.objects.filter(closed_date_from__gt=current_date,all_day=True).order_by('closed_date_from')
+
+	return {'request':	request,
+			'all_closures': all_closures}

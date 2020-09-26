@@ -1,0 +1,10 @@
+{% for all_closures in all_closures %}
+{% if all_closures.closed_date_from == all_closures.closed_date_to %}
+<div class="closed-for">{{ all_closures.closed_date_from|date:"l, F n" }}: <span class="closed-for-span">Closed for {{ all_closures.closed_date_name }}</span></div>
+
+{% elif all_closures.closed_date_from != all_closures.closed_date_to %}
+<div class="closed-for">{{ all_closures.closed_date_from|date:"l, F n Y" }} to {{ all_closures.closed_date_to|date:"l, F n Y" }}: <span class="closed-for-span">Closed for {{ all_closures.closed_date_name }}</span></div>
+{% endif %}
+{% empty %}
+<div>There are no upcoming scheduled closures.</div>
+{% endfor %}
